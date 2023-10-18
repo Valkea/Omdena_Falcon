@@ -19,7 +19,10 @@ CORS(app)
 
 # ########## Init LLM retriever ##########
 
-llm_retriever = init_llm_retriever("TheBloke/CodeLlama-7B-Python-GPTQ")
+llm_retriever = init_llm_retriever("SaloniJhalani/ft-falcon-7b-instruct")
+# llm_retriever = init_llm_retriever("TheBloke/CodeLlama-7B-Python-GPTQ")
+# llm_retriever = init_llm_retriever("TheBloke/CodeLlama-13B-Python-GPTQ")
+# llm_retriever = init_llm_retriever("TheBloke/Mistral-7B-Instruct-v0.1-GPTQ")
 
 # ########## API ENTRY POINTS (BACKEND) ##########
 

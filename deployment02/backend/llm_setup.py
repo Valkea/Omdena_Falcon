@@ -89,7 +89,18 @@ def load_llm(model_id):
 
     # ----- Load model directly
 
-    model = AutoModelForCausalLM.from_pretrained(model_id,device_map='cuda')
+    if model_id == "SaloniJhalani/ft-falcon-7b-instruct":
+        dtype = torch.bfloat16 if torch.cuda.get_device_capability()[0] == 8 else torch.float16
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            trust_remote_code=True,
+            load_in_8bit=True,
+            device_map="auto",
+            torch_dtype = dtype, #torch.bfloat16
+        )
+    else:
+        model = AutoModelForCausalLM.from_pretrained(model_id,device_map='cuda')
+
     tokenizer = AutoTokenizer.from_pretrained(model_id)
 
     generate_text = transformers.pipeline(

@@ -17,7 +17,7 @@ accelerate
 
 Flask==2.2.5
 flask-cors
-flask-ngrok
-pyngrok
+# flask-ngrok
+# pyngrok
 
 gunicorn==20.1.0
