@@ -51,7 +51,7 @@ with gr.Blocks() as demo :
         inputs=txt_query,
         outputs=txt_output,
         fn=predict,
-        cache_examples=True,
+        cache_examples=False,
     )
 
 demo.launch(server_name="0.0.0.0", server_port=8000)
