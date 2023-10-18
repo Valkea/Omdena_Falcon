@@ -29,16 +29,29 @@ llm_models = [
     "SaloniJhalani/ft-falcon-7b-instruct",
 ]
 
-demo = gr.Interface(
-    predict,
-    [
-        gr.Textbox(label="Inference URL", value=base_url),
-        # gr.Dropdown(llm_models, label="LLM model", value=llm_models[0]),
-        gr.Textbox(label="Query:", value=examples[0][0]),
-    ],
-    "text",
-    examples=examples,
-    title= "LLM demo"
+with gr.Blocks() as demo :
+
+    gr.Markdown("# Omdena-UAE-LLM Demo")
+
+    with gr.Row():
+
+        with gr.Column():
+
+            txt_url = gr.Textbox(label="Inference URL:", value=base_url)
+            txt_query = gr.Textbox(label="Query:", value=examples[0][0])
+            btn_submit = gr.Button(value="Submit")
+
+        with gr.Column():
+            txt_output = gr.Textbox(value="", label="Output")
+
+    btn_submit.click(predict, inputs=[txt_url, txt_query], outputs=[txt_output])
+
+    gr.Examples(
+        examples=examples,
+        inputs=txt_query,
+        outputs=txt_output,
+        fn=predict,
+        cache_examples=True,
     )
 
 demo.launch(server_name="0.0.0.0", server_port=8000)
