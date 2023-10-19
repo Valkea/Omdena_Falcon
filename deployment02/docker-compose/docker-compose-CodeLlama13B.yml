@@ -1,0 +1,25 @@
+version: "3"
+services:
+  api:
+    container_name: omdena_falcon_api
+    image: valkea/omdena-falcon-backend:CodeLlama13B
+    ports:
+      - "5000:5000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - falconnet
+
+  app:
+    container_name: omdena_falcon-app
+    image: valkea/omdena_llm_front:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - API_URL=http://omdena_falcon_api:5000
+    networks:
+      - falconnet
+
+networks:
+  falconnet:
