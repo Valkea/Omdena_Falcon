@@ -9,6 +9,13 @@ services:
       - PYTHONUNBUFFERED=1
     networks:
       - falconnet
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 
   app:
     container_name: omdena_falcon-app
