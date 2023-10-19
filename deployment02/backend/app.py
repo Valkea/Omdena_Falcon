@@ -32,7 +32,7 @@ def index():
     """Define the content of the main fontend page of the API server"""
 
     return f"""
-    <h1>The 'Omdeman's LLM Inference API' server is up.</h1>
+    <h1>The 'Omdena's LLM Inference API' server is up.</h1>
     """
 
 @app.route("/inference", methods=['POST'])
